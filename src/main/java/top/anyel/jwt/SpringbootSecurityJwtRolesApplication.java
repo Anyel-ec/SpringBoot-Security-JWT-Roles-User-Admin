@@ -1,4 +1,4 @@
-package top.anyel.jwr;
+package top.anyel.jwt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
