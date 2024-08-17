@@ -1,17 +1,19 @@
 package top.anyel.jwt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import top.appd.jwt.model.dto.AuthRequestDTO;
-import top.appd.jwt.model.dto.JwtResponseDTO;
-import top.appd.jwt.security.JwtService;
-import top.appd.jwt.services.UserDetailsServiceImpl;
+import top.anyel.jwt.models.dto.AuthRequestDTO;
+import top.anyel.jwt.models.dto.JwtResponseDTO;
+import top.anyel.jwt.security.JwtService;
+
 
 import java.util.logging.Logger;
 
@@ -36,12 +38,22 @@ public class AuthController {
 
         if (authentication.isAuthenticated()) {
             logger.info("genera token");
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             return JwtResponseDTO.builder()
-                    .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername()))
+                    .accessToken(jwtService.GenerateToken(userDetails))
                     .build();
         } else {
             throw new UsernameNotFoundException("Invalid user request.");
         }
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/api/v1/admin")
+    public String admin() {
+        // si no  el usuario tiene el rol de ADMIN, entonces podrá acceder a este recurso
+
+        return "Hello Admin";
+    }
+
 }
 

@@ -16,7 +16,7 @@ public class CustomUserDetails extends UserInfo implements UserDetails {
     private String password;
     Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(UserInfo byUsername) {
+    public CustomUserDetails(UserInfo byUsername, List<GrantedAuthority> authorities) {
         this.username = byUsername.getUsername();
         this.password= byUsername.getPassword();
         List<GrantedAuthority> auths = new ArrayList<>();
