@@ -86,7 +86,7 @@ This example application demonstrates how to implement authentication and author
    Use the JWT token received from the login step as an `Authorization` header with the `Bearer` prefix.
 
     ```bash
-    curl -H "Authorization: Bearer jwt-token-here" http://localhost:8080/api/v1/protected
+    curl -H "Authorization: Bearer jwt-token-here" http://localhost:8080/api/v1/admin
     ```
 
 ## Security Configuration
