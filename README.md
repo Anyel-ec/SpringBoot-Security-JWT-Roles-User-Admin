@@ -62,19 +62,7 @@ This example application demonstrates how to implement authentication and author
 
 ## Usage
 
-1. **Register a new user (POST /api/v1/register)**
-
-   Send a POST request to `/api/v1/register` with a JSON body containing `username`, `password`, and `roles` (optional).
-
-    ```json
-    {
-      "username": "new_user",
-      "password": "password",
-      "roles": ["ROLE_USER"]
-    }
-    ```
-
-2. **Log in (POST /api/v1/login)**
+1. **Log in (POST /api/v1/login)**
 
    Send a POST request to `/api/v1/login` with a JSON body containing `username` and `password`.
 
@@ -93,7 +81,7 @@ This example application demonstrates how to implement authentication and author
     }
     ```
 
-3. **Access protected resources**
+2. **Access protected resources**
 
    Use the JWT token received from the login step as an `Authorization` header with the `Bearer` prefix.
 
